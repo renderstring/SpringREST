@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+
+<h1 align="center">All Users</h1>
+
+<table border="1" align="center" style="background-color: #e1e1e1;">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>LastName</th>
+        <th>Email</th>
+        <th>Roles</th>
+        <th>Operations</th>
+    </tr>
+    </thead>
+    <tbody style="text-align: center">
+    <tr th:each="user : ${allUsers}">
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getLastName()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getRoles()}"></td>
+        <td>
+            <a th:href="@{/admin/edit/{id}(id=${user.getId()})}">
+                <input type="button" value="Edit">
+            </a>
+            <a th:href="@{/admin/delete/{id}(id=${user.getId()})}">
+                <input type="button" value="Delete">
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<div style="text-align: center">
+    <a th:href="@{/admin/new}">
+        <input style="text-align: center" type="button" value="Add New User">
+    </a>
+
+    <br><br>
+
+    <a href="/logout" class="logout_button">Logout</a>
+
+</div>
+
+</body>
+</html>
